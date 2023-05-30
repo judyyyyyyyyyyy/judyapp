@@ -34,7 +34,7 @@ pipeline{
                 }
             }
         }
-        stage('Quality code analysis'){
+        stage('Static code analysis'){
 
             steps{
 
@@ -46,7 +46,7 @@ pipeline{
                 }
             }
         }
-        stage('Quality gate analysis'){
+        stage('Quality gate status'){
             steps{
                 
                 script {
