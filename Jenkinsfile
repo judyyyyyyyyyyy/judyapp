@@ -80,7 +80,7 @@ pipeline{
                     nexusVersion: 'nexus3', 
                     protocol: 'http', 
                     repository: 'maven-release', 
-                    version: '2.0.1-SNAPSHOT'
+                    version: '2.0.0'
                 }
             }
         }
