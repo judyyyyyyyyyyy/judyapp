@@ -79,7 +79,7 @@ pipeline{
                     classifier: '', 
                     file: 'target/Uber.jar', 
                     type: 'jar']], 
-                    credentialsId: 'd1d33924-ec59-4550-9dca-3c53c2750014', 
+                    credentialsId: 'nexus-creds', 
                     groupId: 'com.example', 
                     nexusUrl: '18.208.145.72:8081', 
                     nexusVersion: 'nexus3', 
