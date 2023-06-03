@@ -34,7 +34,7 @@ pipeline{
                 }
             }
         }
-        /*stage('Static code analysis'){
+        stage('Static code analysis'){
 
             steps{
 
@@ -54,8 +54,7 @@ pipeline{
                     waitForQualityGate abortPipeline: false, credentialsId: 'sonarqube-api'
                 }
             }
-        }
-      */  
+        } 
         stage('Maven build'){
             steps{
 
@@ -86,6 +85,19 @@ pipeline{
                     protocol: 'http', 
                     repository: nexusRepo, 
                     version: "${readPomVersion.version}"
+                }
+            }
+        }
+        stage('docker image build'){
+            steps{
+                script{
+
+                    sh """
+                    aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 996864587356.dkr.ecr.us-east-1.amazonaws.com
+                    docker build -t webapp1 .
+                    docker tag webapp1:latest 996864587356.dkr.ecr.us-east-1.amazonaws.com/webapp1:latest
+                    docker push 996864587356.dkr.ecr.us-east-1.amazonaws.com/webapp1:latest
+                    """
                 }
             }
         }
