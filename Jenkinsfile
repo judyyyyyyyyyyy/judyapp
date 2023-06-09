@@ -74,7 +74,7 @@ pipeline{
                 }
             }
         }
-        
+
         stage('Nexus artifact upload'){
             steps{
 
@@ -112,6 +112,20 @@ pipeline{
                     docker build -t webapp1 .
                     docker tag webapp1:latest 996864587356.dkr.ecr.${params.region}.amazonaws.com/webapp1:latest
                     docker push 996864587356.dkr.ecr.${params.region}.amazonaws.com/webapp1:latest
+                    """
+                }
+            }
+        }
+        
+        stage('EKS Module'){
+            steps{
+
+                script{
+                    dir('eks_module')
+                    sh """
+                    terraform init
+                    terraform plan -var "access_key=$ACCESS_KEY" -var "secret_key=$SECRET_KEY" --var-file="./config/terraform.tfvars"
+                    terraform apply -var "access_key=$ACCESS_KEY" -var "secret_key=$SECRET_KEY" --var-file="./config/terraform.tfvars" --auto-approve
                     """
                 }
             }
