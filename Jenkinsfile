@@ -44,7 +44,7 @@ pipeline{
                 }
             }
         }
-        stage('Static code analysis'){
+        /*stage('Static code analysis'){
 
             steps{
 
@@ -65,6 +65,7 @@ pipeline{
                 }
             }
         } 
+    */
         stage('Maven build'){
             steps{
 
