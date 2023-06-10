@@ -65,7 +65,6 @@ pipeline{
                 }
             }
         } 
-    */
         stage('Maven build'){
             steps{
 
@@ -100,7 +99,7 @@ pipeline{
                 }
             }
         }
-       
+    */
         stage('docker image build'){
             steps{
                 script{
