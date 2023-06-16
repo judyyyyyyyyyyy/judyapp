@@ -148,5 +148,17 @@ pipeline{
                 }
             }
         }
+        stage('Deployment on EKS Cluster'){
+
+            steps{
+                script{
+
+                    sh """
+                    kubectl apply -f .
+
+                    """
+                }
+            }
+        }
     }
 }
