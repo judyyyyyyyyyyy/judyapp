@@ -5,7 +5,7 @@ pipeline{
     parameters{
 
         string(name: 'region', defaultValue: 'us-east-1', description: 'Choose AWS Region')
-        string(name: 'cluster', defaultValue: 'demo-cluster', description: 'Choose AWS Clustername')
+        string(name: 'cluster', defaultValue: 'deploy-cluster', description: 'Choose AWS Clustername')
     }
 
     environment{
@@ -141,6 +141,7 @@ pipeline{
                     aws configure set access_key_id "$ACCESS_KEY"
                     aws configure set secret_key_id "$SECRET_KEY"
                     aws configure set region "${params.region}"
+
                     aws eks update-kubeconfig --region  "${params.region}" --name "${params.cluster}"
 
                     """
