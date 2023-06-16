@@ -117,33 +117,31 @@ pipeline{
                 }
             }
         }
-        
         stage('EKS Module'){
             steps{
 
                 script{
-                    
+                        dir('eks_module'){
                     sh """
                     terraform init
                     terraform plan -var "access_key=$ACCESS_KEY" -var "secret_key=$SECRET_KEY" --var-file="./config/terraform.tfvars"
                     terraform apply -var "access_key=$ACCESS_KEY" -var "secret_key=$SECRET_KEY" --var-file="./config/terraform.tfvars" --auto-approve
-
                     """
+                        }
                 }
             }
         }
-
-        stage('Connect with eks cluster'){
-
-            steps{
+         stage('Connect with eks cluster'){
+              steps{
 
                 script{
+
                     sh """
                     aws configure set access_key_id "$ACCESS_KEY"
                     aws configure set secret_key_id "$SECRET_KEY"
                     aws configure set region "${params.region}"
 
-                    aws eks update-kubeconfig --region  "${params.region}" --name "${params.cluster}"
+                    aws eks --region "${params.region}" update-kobeconfig --name "${params.cluster}"
 
                     """
 
