@@ -141,7 +141,7 @@ pipeline{
                     aws configure set access_key_id "$ACCESS_KEY"
                     aws configure set secret_key_id "$SECRET_KEY"
                     aws configure set region "${params.region}"
-                    aws eks update-kubeconfig --region  "${params.region}" --name ${params.cluster}
+                    aws eks update-kubeconfig --region  "${params.region}" --name "${params.cluster}"
 
                     """
 
