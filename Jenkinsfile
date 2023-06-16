@@ -5,7 +5,7 @@ pipeline{
     parameters{
 
         string(name: 'region', defaultValue: 'us-east-1', description: 'Choose AWS Region')
-        string(name: 'cluster', defaultValue: 'demo-cluster', description: 'Choose AWS Cluster')
+        string(name: 'cluster', defaultValue: 'demo-cluster', description: 'Choose AWS Clustername')
     }
 
     environment{
